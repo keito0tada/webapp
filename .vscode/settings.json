@@ -1,0 +1,21 @@
+{
+    "[ruby]": {
+        "editor.defaultFormatter": "Shopify.ruby-lsp"
+    },
+    "rubyLsp.rubyVersionManager": "rbenv",
+    "rubyLsp.formatter": "rubocop",
+
+    "[erb]": {
+        "editor.defaultFormatter": "aliariff.vscode-erb-beautify"
+    },
+
+    "editor.wordWrap": "on",
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+
+    "files.associations": {
+        "*.html.erb": "erb"
+    },
+    "files.autoSave": "onFocusChange"
+}
