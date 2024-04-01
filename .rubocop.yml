@@ -2,7 +2,7 @@ require:
   - rubocop-rails
   - rubocop-performance
 
-Documentation:
+Style/Documentation:
   Enable: false
 
 StringLiterals:
