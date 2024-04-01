@@ -14,8 +14,45 @@
  *= require_self
  */
 
-.header-container {
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-container {
+  margin-top: 10vh;
+  flex-grow: 1;
+}
+
+.footer-container {
   background-color: #ee5523;
-  height: 20vh;
+  height: 10vh;
   width: 100%;
+}
+
+/* header */
+header {
+  background-color: #ee5523;
+  height: 8vh;
+  position: fixed;
+  width: 100%;
+}
+.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  margin: 0 10px 0 10px;
+}
+.home-logo {
+  color: #333333;
+  font-size: 2em;
+  text-decoration: none;
+}
+
+/* pages/home */
+.home-container {
+  text-align: center;
 }
