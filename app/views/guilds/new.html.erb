@@ -1,0 +1,16 @@
+<% provide(:title, 'ギルド作成')%>
+<div class='wrapper-user-form'>
+  <h1>ギルド作成</h1>
+  <%= turbo_frame_tag 'signup-form' do%>
+    <div class='user-form'>
+      <%= form_with(model: @guild) do |form| %>
+        <%= turbo_frame_tag 'guild_form'%>
+        <div class='group-label-input'>
+          <%= form.label 'ギルド名' %>
+          <%= form.text_field :name %>
+        </div>
+        <%= form.submit '作成'%>
+      <% end %>
+    <% end %>
+  </div>
+</div>

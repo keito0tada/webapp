@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'guild/new'
+  get 'guild/edit'
   get 'pages/home'
   get 'pages/help'
   get '/signup', to: 'users#new'
@@ -13,4 +15,5 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :users
+  resources :guilds
 end
