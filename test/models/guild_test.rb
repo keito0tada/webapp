@@ -1,7 +1,16 @@
 require "test_helper"
 
 class GuildTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @guild = Guild.new(name: 'ギルド1')
+  end
+
+  test 'should be valid?' do
+    assert @guild.valid?
+  end
+
+  test 'should require a name' do
+    @guild.name = ''
+    assert_not @guild.valid?
+  end
 end

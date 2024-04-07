@@ -1,8 +1,8 @@
 class CreateBelongings < ActiveRecord::Migration[7.1]
   def change
     create_table :belongings do |t|
-      t.uuid :user_id
-      t.uuid :guild_id
+      t.references :user, foreign_key: true
+      t.references :guild, foreign_key: true
 
       t.timestamps
     end
