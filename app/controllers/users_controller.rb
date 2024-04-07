@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       flash[:success] = "ようこそ！！"
       redirect_to user_url(@user)
     else
-      render 'new', status: :unprocessable_entity
+      render 'users/new', status: :unprocessable_entity
     end
   end
 

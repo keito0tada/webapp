@@ -1,26 +1,33 @@
 <% provide(:title, '新規登録')%>
 <div class='wrapper-user-form'>
   <h1>新規登録</h1>
-  <div class='user-form'>
-    <%= form_with(model: @user) do |form| %>
-      <%= render 'shared/error_messages' %>
-      <div class='group-label-input'>
-        <%= form.label 'ユーザー名' %>
-        <%= form.text_field :name %>
-      </div>
-      <div class='group-label-input'>
-        <%= form.label 'メールアドレス' %>
-        <%= form.email_field :email%>
-      </div>
-      <div class='group-label-input'>
-        <%= form.label 'パスワード' %>
-        <%= form.password_field :password%>
-      </div>
-      <div class='group-label-input'>
-        <%= form.label 'パスワード　確認' %>
-        <%= form.password_field :password_confirmation %>
-      </div>
-      <%= form.submit '登録'%>
-    <% end%>
-  </div>
+  <%= turbo_frame_tag 'signup-form' do%>
+    <div class='user-form'>
+      <%= form_with(model: @user) do |form| %>
+        <%= turbo_frame_tag 'input_name' do %>
+          <div class='group-label-input'>
+            <%= form.label 'ユーザー名' %>
+            <%= form.text_field :name %>
+          </div>
+          <%= render partial: 'shared/error_messages', locals: {type: :name}%>
+        <% end %>
+        <div class='group-label-input'>
+          <%= form.label 'メールアドレス' %>
+          <%= form.email_field :email%>
+          <%= render partial: 'shared/error_messages', locals: {type: :email}%>
+        </div>
+        <div class='group-label-input'>
+          <%= form.label 'パスワード' %>
+          <%= form.password_field :password%>
+          <%= render partial: 'shared/error_messages', locals: {type: :password}%>
+        </div>
+        <div class='group-label-input'>
+          <%= form.label 'パスワード　確認' %>
+          <%= form.password_field :password_confirmation %>
+          <%= render partial: 'shared/error_messages', locals: {type: :password_confirmation}%>
+        </div>
+        <%= form.submit '登録'%>
+      <% end%>
+    </div>
+  <% end %>
 </div>
