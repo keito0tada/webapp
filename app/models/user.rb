@@ -5,6 +5,7 @@ class User < ApplicationRecord
   before_save :downcase_email
 
   has_many :belonging, dependent: :destroy
+  has_many :sessions, dependent: :destroy
   has_secure_password
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
