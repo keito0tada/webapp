@@ -1,0 +1,17 @@
+<% provide(:title, :login) %>
+<div class='wrapper-form'>
+  <h1><%= :login %></h1>
+  <div class='user-form'>
+    <%= form_with(url: login_path, scope: :session) do |form| %>
+      <div class='input-field'>
+        <%= form.label :email %>
+        <%= form.email_field :email %>
+      </div>
+      <div class='input-field'>
+        <%= form.label :password %>
+        <%= form.password_field :password %>
+      </div>
+      <%= form.submit :login %>
+    <% end %>
+  </div>
+</div>

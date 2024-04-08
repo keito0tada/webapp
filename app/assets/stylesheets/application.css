@@ -86,7 +86,7 @@ header {
 }
 
 /* user */
-.wrapper-user-form h1 {
+.wrapper-form > h1 {
   text-align: center;
 }
 .user-form {
@@ -94,21 +94,21 @@ header {
   flex-direction: column;
   align-items: center;
 }
-.group-label-input {
+.input-field {
   width: 50vw;
 }
-.group-label-input > label {
+.input-field > label {
   color: #dddddd;
   font-size: 1.2em;
 }
-.group-label-input input {
+.input-field input {
   font-size: 1.5em;
   width: 100%;
 }
 .field_with_errors input {
   border: 2px solid #ee3344;
 }
-.group-label-input ~ input {
+.input-field ~ input {
   font-size: 2em;
   margin-top: 4em;
   width: 100%;

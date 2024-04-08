@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :check_correct_user, only: [:edit]
   def index
   end
 
@@ -23,11 +24,16 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   private
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def check_correct_user
+    redirect_to(root_url, status: :see_other) unless logged_in? && (params[:id] == current_user_id)
   end
 end
