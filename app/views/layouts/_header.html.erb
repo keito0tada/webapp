@@ -3,7 +3,11 @@
     <%= link_to 'チャットアプリ（仮）', '/', class: 'home-logo' %>
     <nav>
       <ul>
-        <li><%= link_to "Log in", '/login' %></li>
+        <% if logged_in? %>
+          <li><%= link_to 'Log out', '/logout', data: { turbo_method: :delete } %></li>
+        <% else %>
+          <li><%= link_to "Log in", '/login' %></li>
+        <% end %>
       </ul>
     </nav>
   </div>

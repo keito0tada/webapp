@@ -24,8 +24,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out
-    @login_session.destroy
+    if logged_in?
+      @login_session.destroy if @login_session
+      log_out
+    end
     redirect_to root_url, status: :see_other
   end
 
