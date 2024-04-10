@@ -3,4 +3,9 @@
 taro:
   name: "山田太郎"
   email: "taro@example.com"
-  password_digest: 'password'
+  password_digest: "password"
+
+jiro:
+  name: "山田次郎"
+  email: "jiro@example.com"
+  password_digest: "password"
