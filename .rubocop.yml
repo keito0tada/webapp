@@ -1,12 +1,11 @@
+inherit_from: .rubocop_todo.yml
+
 require:
-  - rubocop-rails
   - rubocop-performance
+  - rubocop-rails
 
 Style/Documentation:
-  Enable: false
+  Enabled: false
 
-StringLiterals:
-  EnforcedStyle: single_quotes
-  Include:
-    - "app/"
-    - "test/"
+Style/SymbolArray:
+  Enable: false

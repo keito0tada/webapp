@@ -10,10 +10,10 @@ module SessionsHelper
   def logged_in?
     if session[:user_id]
       return true
-    elsif cookies.encrypted[:user_id] && coockies[:session_token]
+    elsif cookies.encrypted[:user_id] && cookies[:session_token]
       user_id = cookies.encrypted[:user_id]
       session_token = cookies[:session_token]
-      user = User.find(user_id)
+      user = User.find_by(id: user_id)
       login_session = Session.get_session(user_id, session_token)
       if user && login_session
         reset_session
