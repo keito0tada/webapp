@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'messages/show'
+  get 'channels/new'
+  get 'channels/show'
+  get 'channels/edit'
+  get 'channels/destroy'
   get 'sessions/new'
   get 'guilds/new'
   get 'guilds/edit'
