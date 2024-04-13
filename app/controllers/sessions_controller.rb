@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       @login_session = Session.new_login_session(user)
       if @login_session.save
         log_in(user, @login_session)
-        redirect_to user_url(user), status: :moved_permanently
+        redirect_to user_url(user)
       else
         render 'sessions/new', status: :unprocessable_entity
       end
