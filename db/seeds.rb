@@ -8,4 +8,10 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-User.create(name: '山田太郎', email: 'taro@example.com', password: 'password', password_confirmation: 'password')
+guild1 = Guild.create(name: 'Guild 1')
+channel1 = guild1.channels.create(name: 'Channel 1')
+taro = User.create(name: '山田太郎', email: 'taro@example.com', password: 'password', password_confirmation: 'password')
+taro.user_guild_belongings.create(guild: guild1)
+taro.user_channel_belongings.create(channel: channel1)
+channel1.messages.create(content: 'hello', user: taro)
+channel1.messages.create(content: 'foo', user: taro)

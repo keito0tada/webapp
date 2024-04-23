@@ -1,2 +1,4 @@
-<h1>Channels#show</h1>
-<p>Find me in app/views/channels/show.html.erb</p>
+<h1><%= @channel.name %></h1>
+<% @channel.messages.each do |message| %>
+  <%= render partial: 'channels/message', locals: { message: message } %>
+<% end %>

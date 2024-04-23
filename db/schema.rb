@@ -10,23 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_13_123002) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_22_093407) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "belongings", id: false, force: :cascade do |t|
-    t.uuid "user_id", null: false
-    t.uuid "guild_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["guild_id"], name: "index_belongings_on_guild_id"
-    t.index ["user_id"], name: "index_belongings_on_user_id"
-  end
-
-  create_table "channels", force: :cascade do |t|
+  create_table "channels", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "guild_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["guild_id"], name: "index_channels_on_guild_id"
   end
 
   create_table "guilds", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -35,10 +28,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_13_123002) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "messages", force: :cascade do |t|
+  create_table "messages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "channel_id"
+    t.uuid "user_id"
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_messages_on_channel_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "sessions", id: false, force: :cascade do |t|
@@ -47,6 +44,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_13_123002) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "user_channel_belongings", id: false, force: :cascade do |t|
+    t.uuid "user_id"
+    t.uuid "channel_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_user_channel_belongings_on_channel_id"
+    t.index ["user_id"], name: "index_user_channel_belongings_on_user_id"
+  end
+
+  create_table "user_guild_belongings", id: false, force: :cascade do |t|
+    t.uuid "user_id"
+    t.uuid "guild_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guild_id"], name: "index_user_guild_belongings_on_guild_id"
+    t.index ["user_id"], name: "index_user_guild_belongings_on_user_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -58,7 +73,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_13_123002) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "belongings", "guilds"
-  add_foreign_key "belongings", "users"
+  add_foreign_key "channels", "guilds"
+  add_foreign_key "messages", "channels"
   add_foreign_key "sessions", "users"
+  add_foreign_key "user_channel_belongings", "channels"
+  add_foreign_key "user_channel_belongings", "users"
+  add_foreign_key "user_guild_belongings", "guilds"
+  add_foreign_key "user_guild_belongings", "users"
 end

@@ -4,7 +4,11 @@
 class User < ApplicationRecord
   before_save :downcase_email
 
-  has_many :belongings, dependent: :destroy
+  has_many :user_guild_belongings, dependent: :destroy
+  has_many :guilds, through: :user_guild_belongings
+  has_many :user_channel_belongings, dependent: :destroy
+  has_many :channels, through: :user_channel_belongings
+  has_many :users, dependent: :nullify
   has_many :sessions, dependent: :destroy
   has_secure_password
 
